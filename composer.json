@@ -1,12 +1,15 @@
 {
-  "name": "rholter.greenriverdev.com/328/diner",
+  "name": "tostrander/328/diner",
   "authors": [
     {
-      "name": "Renee Holter",
-      "email": "holter.renee@student.greenriver.edu"
+      "name": "Tina Ostrander",
+      "email": "tostrander@greenriver.edu"
     }
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/", "model/", "controllers/"]
   }
 }

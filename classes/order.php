@@ -1,22 +1,28 @@
 <?php
 
-//TODO add a description to each method
+//TODO: Add a description to each method
+
 class Order
 {
     private $_food;
     private $_meal;
     private $_condiments;
 
+    /**
+     * Order constructor.
+     * @param $_food
+     * @param $_meal
+     * @param $_condiments
+     */
+    public function __construct()
+    {
+        $this->_food = "";
+        $this->_meal = "";
+        $this->_condiments = "";
+    }
 
     /**
-     */public function __construct()
-{
-    $this->_food = ""; //initialized as a string variable
-    $this->_meal = "";
-    $this->_condiments = "";
-}
-
-    /** Return then food item for the order
+     * Return the food item for the order
      * @return string
      */
     public function getFood(): string
@@ -25,6 +31,7 @@ class Order
     }
 
     /**
+     * Set the selected food for the order
      * @param string $food
      */
     public function setFood(string $food): void
@@ -63,7 +70,6 @@ class Order
     {
         $this->_condiments = $condiments;
     }
-
 
 
 }

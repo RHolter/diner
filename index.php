@@ -1,26 +1,77 @@
 <?php
 
 //Turn on error reporting
-int_set('display_errors', 1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//require the autoload file
-require_once("vendor/autoload.php");
+//Require the necessary files
+require_once('vendor/autoload.php');
 
-//create an instance of the base class
-// :: invokes a static method
+//Start a session
+session_start();
+
+/*
+//Test Order class
+$order = new Order();
+$order->setFood("tacos");
+$order->setMeal("lunch");
+$order->setCondiments("salsa, guacamole");
+var_dump($order);
+*/
+
+//Create an instance of the Base class
 $f3 = Base::instance();
+
+//Create an instance of the Controller class
+$con = new Controller($f3);
 
 //Define a default route
 $f3->route('GET /', function() {
-    // echo "<h1>hello, world!</h1>;
-    $view = new Template();
-    echo $view-> render('views/home.html');
+
+    $GLOBALS['con']->home();
+});
+
+//Define a breakfast route
+$f3->route('GET /breakfast', function() {
+    //echo "Breakfast page";
 
     $view = new Template();
-    echo $view->render('views/home.html');
-}
-);
+    echo $view->render('views/breakfast-menu.html');
+});
 
-//run fat free
+//Define a lunch route
+$f3->route('GET /lunch', function() {
+    //echo "Breakfast page";
+
+    $view = new Template();
+    echo $view->render('views/lunch.html');
+});
+
+//Define a lunch route
+$f3->route('GET /breakfast/brunch', function() {
+    //echo "Breakfast page";
+
+    $view = new Template();
+    echo $view->render('views/breakfast-menu.html');
+});
+
+//Define an order route
+$f3->route('GET|POST /order', function($f3) {
+
+    $GLOBALS['con']->order();
+});
+
+//Define an order2 route
+$f3->route('GET|POST /order2', function($f3) {
+
+    $GLOBALS['con']->order2();
+});
+
+//Define a summary route -> orderSummary.html
+$f3->route('GET|POST /summary', function() {
+
+    $GLOBALS['con']->summary();
+});
+
+//Run fat-free
 $f3->run();
